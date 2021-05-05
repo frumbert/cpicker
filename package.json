@@ -11,7 +11,7 @@
     "start": "webpack serve --open"
   },
   "keywords": [],
-  "private": true,
+  "private": false,
   "author": "tim st.clair",
   "license": "ISC",
   "devDependencies": {
