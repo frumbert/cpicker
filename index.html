@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html {
+            font-family: sans-serif;
+        }
+        body{
+            background: #eee;
+        }
+    </style>
+</head>
+<body>
+<div>
+
+    <p>linear gradient</p>
+    <input type='text' value='linear-gradient(0deg, rgba(168, 80, 215, .5) 0%, rgb(36, 175, 235) 100%)' class='cpicker'>
+
+    <p>single colour</p>
+    <input type='color' value='#ffcc33' class='cpicker'>
+
+    <p>radial gradient (hex)</p>
+    <div data-value='radial-gradient(circle at center, #ffcc33 0%, #336699 100%)' class='cpicker'></div>
+
+    <p>radial gradient (rgba)</p>
+    <div data-value='radial-gradient(circle at center, rgb(64,128,192) 0%, rgba(255,192,128,.5) 100%)' class='cpicker'></div>
+
+    <p>background image</p>
+    <input type='text' value='url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4QDeRXhpZgAASUkqAAgAAAAGABIBAwABAAAAAQAAABoBBQABAAAAVgAAABsBBQABAAAAXgAAACgBAwABAAAAAgAAABMCAwABAAAAAQAAAGmHBAABAAAAZgAAAAAAAAA4YwAA6AMAADhjAADoAwAABwAAkAcABAAAADAyMTABkQcABAAAAAECAwCGkgcAFQAAAMAAAAAAoAcABAAAADAxMDABoAMAAQAAAP//AAACoAQAAQAAADIAAAADoAQAAQAAADIAAAAAAAAAQVNDSUkAAABQaWNzdW0gSUQ6IDYzAP/bAEMACAYGBwYFCAcHBwkJCAoMFA0MCwsMGRITDxQdGh8eHRocHCAkLicgIiwjHBwoNyksMDE0NDQfJzk9ODI8LjM0Mv/bAEMBCQkJDAsMGA0NGDIhHCEyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMv/CABEIADIAMgMBIgACEQEDEQH/xAAaAAACAwEBAAAAAAAAAAAAAAAAAwECBAUG/8QAGgEAAwEBAQEAAAAAAAAAAAAAAQIEAwAFBv/aAAwDAQACEAMQAAABwMzMi+r0TV5RcJjtHCAcjTToP5/G7GDdnAnhd7z+tFigdHLio06+jzMNFrpDRRQYB1LAqqAadzAWiQA//8QAHhAAAgMBAAMBAQAAAAAAAAAAAAIBAxEEEBIgExT/2gAIAQEAAQUC000000000VWaPwszTTRVZha21WnptRpQ7lhkNko6354/ufpihfSDrn04/MidqMT28yRbbbfZ40mSfET8T9f/xAAdEQACAgIDAQAAAAAAAAAAAAAAAQIDERIQITEi/9oACAEDAQE/Acjsgnhvmy21Z1XRF9FUvk2Y2OuJCCSwaIl4P0jx/8QAGhEAAgMBAQAAAAAAAAAAAAAAAAERIDECEP/aAAgBAgEBPwGiSO9FnsDZNf/EACoQAAIBAgMECwAAAAAAAAAAAAECABEhAxJBECAiMRMjMDJAUVJhcXKx/9oACAEBAAY/Auxrp5mVFG+p3OFSfgTjVgoubTM3cHJZaLjixJo2znDlpeHBcAZ7QrrsVdXau716nN611nAr4je9hOkxOf54H//EAB8QAQACAQUBAQEAAAAAAAAAAAEAESEQMUFRYXEggf/aAAgBAQABPyEg/QBBFIAdiibHD6aPvRxZ+kNcQsUYjbwTaLDhXUFPAZ3wy57IeFCtuBKQoi78S2CrZhDZ4M8OdVljN5lVgscv0S5cEKf2incYA2HRMynUbpcwQcS9bDfQ0//aAAwDAQACAAMAAAAQyBIPfqJ8IY+ye++C/8QAHBEAAgIDAQEAAAAAAAAAAAAAAAERITFhcSBB/9oACAEDAQE/EFIhlT6QihXBpmb7AjL6MfODYV2THFEZM2eY/wD/xAAZEQEBAQEBAQAAAAAAAAAAAAABABEQITH/2gAIAQIBAT8QsbbZH22zaFsILD6klqOPP//EACIQAQACAQMFAAMAAAAAAAAAAAEAETEhQVEQYXGBkSCh8f/aAAgBAQABPxDpBB038KqwG1Qu8ufUWq2W0OvGfkaNLURw+zzlpzCynmiXScHgC6tMuPcX1NPSE2K4imu1hUG+ppg1vyoN+ovln9yFf1qchWzFeR0Krop5dIrWGg5vE+4p4c9Vp+yEWXNGiKgItYjiVmuCoo7+i9yOc9D9havqIwIgdEwGwQsYZ2pa5srFBZiAFhNpWbzKZzBDaPSXP//Z) no-repeat top left / cover' class='cpicker'>
+
+    <p>built in colour picker</p>
+    <input type="color" value='#13e870'>
+
+</div>
+
+</body>
+<script src="./dist/index.min.js"></script>
+<script>
+
+    [...document.querySelectorAll('.cpicker')].forEach(node => {
+        let n = new CPicker(node, {
+            callback: function(colour) {
+                console.log(node, 'callback', colour);
+            }
+        })
+    });
+
+</script>
+</html>
