@@ -3,10 +3,11 @@ import './xnquery.js'
 (function (window, $) {
 
     let settings = { value : '#ffffff' };
-    const CSS = '.cpicker-container {color:black} .cpicker-container input[type=color]{cursor:pointer}.cpicker-container input[type=color i],.cpicker-container input[type=color i]::-webkit-color-swatch,.cpicker-container input[type=color i]::-webkit-color-swatch-wrapper{padding:0;border-color:#fff;border-radius:5px}.cpicker-radio{display:flex;justify-content:space-evenly}.cpicker-radio>div{vertical-align:middle}.cpicker-radio>div:not(:last-of-type){margin-right:1px}.cpicker-radio input[type=radio]{position:absolute;left:-9999px}.cpicker-radio input[type=radio]+label{background-color:#fff;color:#369;border-radius:3px;padding:.25rem .5rem;transition:background-color .3s,color .3s}.cpicker-radio input[type=radio]:checked+label{background-color:#369;color:#fff}.cpicker-mode-gradient .cpicker-flex{align-items:stretch}.cpicker-row>span{margin:.5rem 0;display:block}.cpicker-modeswitch{padding:5px 0;border-bottom:1px solid #ccc}.cpicker-preview-element{width:32px;height:32px;border:1px solid #ccc;box-shadow:0 0 3px rgba(0,0,0,.2);cursor:pointer}.cpicker-container{position:absolute;width:280px;background-color:#fff;box-shadow:0 3px 6px rgba(0,0,0,.2);padding:5px}.cpicker-container>div{margin-bottom:5px}.cpicker-image-preview{vertical-align:middle;width:100px;min-height:56.25px;background-color:#f8f8f8}.cpicker-flex-between{justify-content:space-between;align-items:center}.cpicker-flex,.cpicker-flex-1{display:flex}.cpicker-checkers,.cpicker-img-preview{background:url(data:image/png;base64,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ICAgIDx4bXA6Q3JlYXRvclRvb2w+QWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cyk8L3htcDpDcmVhdG9yVG9vbD4KICAgICAgICAgPHhtcE1NOkRlcml2ZWRGcm9tIHJkZjpwYXJzZVR5cGU9IlJlc291cmNlIj4KICAgICAgICAgICAgPHN0UmVmOmluc3RhbmNlSUQ+eG1wLmlpZDo3N0FERkY4MUNCOTcxMUUzQjE5OTk3MzZFOUEzNURDRjwvc3RSZWY6aW5zdGFuY2VJRD4KICAgICAgICAgICAgPHN0UmVmOmRvY3VtZW50SUQ+eG1wLmRpZDo3N0FERkY4MkNCOTcxMUUzQjE5OTk3MzZFOUEzNURDRjwvc3RSZWY6ZG9jdW1lbnRJRD4KICAgICAgICAgPC94bXBNTTpEZXJpdmVkRnJvbT4KICAgICAgICAgPHhtcE1NOkRvY3VtZW50SUQ+eG1wLmRpZDo3N0FERkY4NENCOTcxMUUzQjE5OTk3MzZFOUEzNURDRjwveG1wTU06RG9jdW1lbnRJRD4KICAgICAgICAgPHhtcE1NOkluc3RhbmNlSUQ+eG1wLmlpZDo3N0FERkY4M0NCOTcxMUUzQjE5OTk3MzZFOUEzNURDRjwveG1wTU06SW5zdGFuY2VJRD4KICAgICAgICAgPHRpZmY6T3JpZW50YXRpb24+MTwvdGlmZjpPcmllbnRhdGlvbj4KICAgICAgICAgPGRjOmZvcm1hdD5pbWFnZS9wbmc8L2RjOmZvcm1hdD4KICAgICAgPC9yZGY6RGVzY3JpcHRpb24+CiAgIDwvcmRmOlJERj4KPC94OnhtcG1ldGE+CvRWRVUAAAAySURBVDgRY/wPBAx4wKFDh/DIMjAw4ZUlQnLUgMEQiCyE4tnOzg5vZI5G42CIRopjAQBajwlk46G0YgAAAABJRU5ErkJggg==)}.cpicker-img-preview{width:5rem;height:3rem;object-fit:contain;border-radius:3px;vertical-align:middle}.cpicker-controls{margin-bottom:0;padding-bottom:0}.cpicker-controls>span,.cpicker-flex-1>*,.cpicker-gradient-preview{flex:1}.cpicker-controls span>a{text-align:center;display:block;padding:.25rem;border:1px solid #ccc;background:#f8f8f8;border-radius:2px;cursor:pointer}.cpicker-controls span:first-of-type{margin-right:.25rem}.cpicker-controls,.cpicker-row:not(:first-of-type){border-top:1px solid #ccc;margin:5px 0;padding:5px 0}';
+    const CSS = '.cpicker-container {color:black;z-index:9999} .cpicker-container input[type=color]{cursor:pointer}.cpicker-container input[type=color i],.cpicker-container input[type=color i]::-webkit-color-swatch,.cpicker-container input[type=color i]::-webkit-color-swatch-wrapper{padding:0;border-color:#f8f8f8;border-radius:5px}.cpicker-radio{display:flex;justify-content:space-evenly}.cpicker-radio>div{vertical-align:middle}.cpicker-radio>div:not(:last-of-type){margin-right:1px}.cpicker-radio input[type=radio]{position:absolute;left:-9999px}.cpicker-radio input[type=radio]+label{background-color:#fff;color:#369;border-radius:3px;padding:.25rem .5rem;transition:background-color .3s,color .3s}.cpicker-radio input[type=radio]:checked+label{background-color:#369;color:#fff}.cpicker-mode-gradient .cpicker-flex{align-items:stretch}.cpicker-row>span{margin:.5rem 0;display:block}.cpicker-modeswitch{padding:5px 0;border-bottom:1px solid #ccc}.cpicker-preview-element{width:32px;height:32px;border:1px solid #ccc;box-shadow:0 0 3px rgba(0,0,0,.2);cursor:pointer}.cpicker-container{position:absolute;width:280px;background-color:#fff;box-shadow:0 3px 6px rgba(0,0,0,.2);padding:5px}.cpicker-container>div{margin-bottom:5px}.cpicker-image-preview{vertical-align:middle;width:100px;min-height:56.25px;background-color:#f8f8f8}.cpicker-flex-between{justify-content:space-between;align-items:center}.cpicker-flex,.cpicker-flex-1{display:flex}.cpicker-checkers,.cpicker-img-preview{background:url(data:image/png;base64,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ICAgIDx4bXA6Q3JlYXRvclRvb2w+QWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cyk8L3htcDpDcmVhdG9yVG9vbD4KICAgICAgICAgPHhtcE1NOkRlcml2ZWRGcm9tIHJkZjpwYXJzZVR5cGU9IlJlc291cmNlIj4KICAgICAgICAgICAgPHN0UmVmOmluc3RhbmNlSUQ+eG1wLmlpZDo3N0FERkY4MUNCOTcxMUUzQjE5OTk3MzZFOUEzNURDRjwvc3RSZWY6aW5zdGFuY2VJRD4KICAgICAgICAgICAgPHN0UmVmOmRvY3VtZW50SUQ+eG1wLmRpZDo3N0FERkY4MkNCOTcxMUUzQjE5OTk3MzZFOUEzNURDRjwvc3RSZWY6ZG9jdW1lbnRJRD4KICAgICAgICAgPC94bXBNTTpEZXJpdmVkRnJvbT4KICAgICAgICAgPHhtcE1NOkRvY3VtZW50SUQ+eG1wLmRpZDo3N0FERkY4NENCOTcxMUUzQjE5OTk3MzZFOUEzNURDRjwveG1wTU06RG9jdW1lbnRJRD4KICAgICAgICAgPHhtcE1NOkluc3RhbmNlSUQ+eG1wLmlpZDo3N0FERkY4M0NCOTcxMUUzQjE5OTk3MzZFOUEzNURDRjwveG1wTU06SW5zdGFuY2VJRD4KICAgICAgICAgPHRpZmY6T3JpZW50YXRpb24+MTwvdGlmZjpPcmllbnRhdGlvbj4KICAgICAgICAgPGRjOmZvcm1hdD5pbWFnZS9wbmc8L2RjOmZvcm1hdD4KICAgICAgPC9yZGY6RGVzY3JpcHRpb24+CiAgIDwvcmRmOlJERj4KPC94OnhtcG1ldGE+CvRWRVUAAAAySURBVDgRY/wPBAx4wKFDh/DIMjAw4ZUlQnLUgMEQiCyE4tnOzg5vZI5G42CIRopjAQBajwlk46G0YgAAAABJRU5ErkJggg==)}.cpicker-img-preview{width:5rem;height:3rem;object-fit:contain;border-radius:3px;vertical-align:middle}.cpicker-controls{margin-bottom:0;padding-bottom:0}.cpicker-controls>span,.cpicker-flex-1>*,.cpicker-gradient-preview{flex:1}.cpicker-controls span>a{text-align:center;display:block;padding:.25rem;border:1px solid #ccc;background:#f8f8f8;border-radius:2px;cursor:pointer}.cpicker-controls span:first-of-type{margin-right:.25rem}.cpicker-controls,.cpicker-row:not(:first-of-type){border-top:1px solid #ccc;margin:5px 0;padding:5px 0}';
 
     function CPicker(element, options) {
         if (typeof element === 'string') element = document.querySelector(element);
+        if (!element) return;
         settings.value = element.dataset.value ? element.dataset.value : element.value ? element.value : settings.value;
         this.element = element;
         this.$element = $(element);
@@ -73,6 +74,29 @@ import './xnquery.js'
           const brightness = R * 0.299 + G * 0.587 + B * 0.114 + (1 - A) * 255;
           return brightness > 186 ? "#000000" : "#FFFFFF";
         },
+
+
+        /* determine the colour black or white based on the specified colour */
+        calculateContrast: function (hexa, hexb) {
+            if (!hexa||hexa.indexOf('url')!==-1) return;
+            if (hexa.indexOf('rgb')!==-1) hexa = this.colourToHex(hexa);
+            if (hexa.indexOf('#')===-1)return;
+            // get the rgb value of the first colour
+            let [r,g,b] = hexa.replace(/^#?([a-f\d])([a-f\d])([a-f\d])$/i, (m, r, g, b) => '#' + r + r + g + g + b + b)
+                .substring(1).match(/.{2}/g)
+                .map(x => parseInt(x, 16));
+            // supplying a second colour averages the rgb value
+            if (typeof hexb !== 'undefined') {
+                if (hexb.indexOf('rgb')!==-1) hexb = this.colourToHex(hexb);
+                let [rb,gb,bb] = hexb.replace(/^#?([a-f\d])([a-f\d])([a-f\d])$/i, (m, r, g, b) => '#' + r + r + g + g + b + b)
+                    .substring(1).match(/.{2}/g)
+                    .map(x => parseInt(x, 16));
+                let [r,g,b] = [(r + rb) / 2, (g + gb) / 2, (b + bb) / 2];
+            }
+            // return the contrasting colour for this rgba quad
+            return this.getContrast(r,g,b,1);
+        },
+
 
 
         /* helper function - replace using arrays of strings */
@@ -395,7 +419,7 @@ import './xnquery.js'
                     let colour = this.calculateColour();
                     this.updatePreview(colour);
                     this.toggleColourPicker();
-                    if (this.settings.callback) this.settings.callback(colour);
+                    if (this.settings.callback) this.settings.callback(colour, this.colourProperties(colour));
                 }
             });
         },
@@ -444,6 +468,7 @@ import './xnquery.js'
             let pos = value.includes('top left') ? 'top left' : value.includes('middle left') ? 'middle left' : value.includes('bottom left') ? 'bottom left' : value.includes('top center') ? 'top center' : value.includes('center') ? 'center' : value.includes('bottom center') ? 'bottom center' : value.includes('top right') ? 'top right' : value.includes('middle right') ? 'middle right' : value.includes('bottom right') ? 'bottom right' : '';
  
             let props = {
+                node:   this.element,
                 solid:  (value.indexOf("#") === 0 || value.indexOf("rgb") === 0)
                         ?
                         this.colourToHex(value) // could still be a gradient
@@ -451,6 +476,7 @@ import './xnquery.js'
                         '',
 
                 solido: this.getAlpha(value),
+                solidContrast: this.calculateContrast(value),
 
                 shape: value.indexOf("radial-gradient") === 0
                         ?
@@ -489,11 +515,12 @@ import './xnquery.js'
                         'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=', // http://disq.us/p/d5a8xb
 
                 from:   this.colourToHex(gfrom),
-                fromo:  this.getAlpha(gfrom), 
+                fromo:  this.getAlpha(gfrom),
                 to:     this.colourToHex(gto),
                 too:    this.getAlpha(gto), 
                 position: pos,
-                direction: dir  
+                direction: dir,
+                gradientContrast: this.calculateContrast(gfrom, gto),
             }
             return props;
 

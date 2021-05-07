@@ -36,13 +36,13 @@
 </div>
 
 </body>
-<script src="./dist/index.min.js"></script>
+<script src="./dist/cpicker.min.js"></script>
 <script>
 
     [...document.querySelectorAll('.cpicker')].forEach(node => {
         let n = new CPicker(node, {
-            callback: function(colour) {
-                console.log(node, 'callback', colour);
+            callback: function(colour, properties) {
+                console.log(node, 'callback', colour, properties);
             }
         })
     });

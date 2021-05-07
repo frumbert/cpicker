@@ -5,7 +5,7 @@ const env = process.env.WEBPACK_ENV
 
 // Simply configure those 4 variables:
 const JS_SOURCE_FILES = ['./src/index.js'] // 'babel-polyfill', adds 420k
-const OUTPUT_FILENAME = 'index'
+const OUTPUT_FILENAME = 'cpicker'
 const DEST_FOLDER = 'dist'
 const COPYRIGHT = `MIT Licence`
 
